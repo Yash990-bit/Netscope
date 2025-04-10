@@ -10,6 +10,7 @@
 <body>
     <div class="particles" id="particles"></div>
     <header>
+        <div class="overlay">
         <div class="container">
             <div class="navbar">
                 <div class="logo">
@@ -42,18 +43,17 @@
                 </div>
             </div>
         </div>
+        </div>
     </header>
     
+
     <section class="hero">
-        <div class="container">
             <h1>Unmatched Security, Uncompromising Performance at the Edge</h1>
             <p>Simplify and modernize your infrastructure without trading performance for security.</p>
             <a href="#" class="platform-btn">See our platform</a>
-        </div>
     </section>
     
     <section class="clients">
-        <div class="container">
             <div class="client-logos">
                 <img src="Images/images2.png" alt="Client Logo" class="client-logo">
                 <img src="Images/images3.png" alt="Airbus" class="client-logo">
@@ -61,66 +61,116 @@
                 <img src="Images/images5.png" alt="Client Logo" class="client-logo">
                 <img src="Images/images6.png" alt="Yamaha" class="client-logo">
             </div>
-        </div>
     </section>
+    
+    <div class="car">
+            <h2>
+                Protect and accelerate your organization,<br>
+                without sacrificing security or network performance
+            </h2>
+            <p>
+                Whether it's GenAI, cloud, your data center, or the internet, keep your business and data secure with a phenomenal user experience anywhere work happens.
+            </p>
+    </div>
+
+    <section class="car-section">
+            <div class="logs">
+                <img src="Images/images7.png" alt="Car Image" class="car-image">
+
+                <div class="text">
+                    <div class="one-platform">
+                        <img src="Images/images9.svg" alt="One Platform" class="one-platform-img">
+                        <h3>The power of One</h3>
+                        <p>
+                            Reduce cost and complexity using one cloud-native open platform, one console, one client, one gateway and one private security cloud.
+                        </p>
+                    </div>
+                
+                    <div class="one-platform">
+                        <img src="Images/images10.svg" alt="AI-powered visibility and protection" class="one-platform-img">
+                        <h3>AI-powered visibility and protection</h3>
+                        <p>
+                            Prevent data loss and de-risk threats by decoding cloud GenAI, and SaaS user and entity activity with the context-aware Zero Trust Engine.
+                        </p>
+                    </div>
+                
+                    <div class="one-platform">
+                        <img src="Images/images11.svg" alt="A phenomenal experience, end-to-end" class="one-platform-img">
+                        <h3>A phenomenal experience, end-to-end</h3>
+                        <p>
+                            Deliver, manage, and optimize access from anywhere with end-to-end connectivity that is fast and reliable.
+                        </p>
+                    </div>
+                
+                    <div class="one-platform">
+                        <img src="Images/images12.svg" alt="Built right from day one" class="one-platform-img">
+                        <h3>Built right from day one</h3>
+                        <p>
+                            Harness the power of cloud, SaaS, and AI innovation through a platform built for modern business.
+                        </p>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Feature section with side-by-side layout -->
+    <div class="feature-display">
+        <div class="container">
+            <h1>How to achieve modern security and network performance</h1>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px;">
+                <div class="feature-menu">
+                    <div class="color-text">
+                        <p onclick="showFeature(0)" class="feature-item active">Enable fast and secure AI, cloud, and web access</p>
+                        <p onclick="showFeature(1)" class="feature-item">Protect data wherever it moves</p>
+                        <p onclick="showFeature(2)" class="feature-item">Evolve beyond legacy VPN</p>
+                        <p onclick="showFeature(3)" class="feature-item">Simplify and consolidate infrastructure</p>
+                        <p onclick="showFeature(4)" class="feature-item">Modernize enterprise networking</p>
+                        <p onclick="showFeature(5)" class="feature-item">Transform your branch</p>
+                    </div>
+                </div>
+                
+                <div class="feature-content">
+                    <img id="feature-image-0" src="Images/images8.svg" alt="Enable fast and secure AI" class="feature-image active">
+                    <img id="feature-image-1" src="Images/images13.svg" alt="Protect data wherever it moves" class="feature-image">
+                    <img id="feature-image-2" src="Images/images14.svg" alt="Evolve beyond legacy VPN" class="feature-image">
+                    <img id="feature-image-3" src="Images/images15.svg" alt="Simplify and consolidate infrastructure" class="feature-image">
+                    <img id="feature-image-4" src="Images/images16.svg" alt="Modernize enterprise networking" class="feature-image">
+                    <img id="feature-image-5" src="Images/images17.svg" alt="Transform your branch" class="feature-image">
+                    
+                    <div id="feature-desc-0" class="feature-description active">
+                        Unified data security that uses patented AI and ML techniques to adapt security based on the context of every interaction.
+                    </div>
+                    <div id="feature-desc-1" class="feature-description">
+                        Keep your sensitive data protected across all environments with advanced data protection that follows your information wherever it goes.
+                    </div>
+                    <div id="feature-desc-2" class="feature-description">
+                        Replace traditional VPN solutions with modern, zero-trust network access for improved security and performance.
+                    </div>
+                    <div id="feature-desc-3" class="feature-description">
+                        Reduce complexity by consolidating multiple security functions into a single, unified platform.
+                    </div>
+                    <div id="feature-desc-4" class="feature-description">
+                        Transform networking with cloud-native solutions designed for today's distributed workforce.
+                    </div>
+                    <div id="feature-desc-5" class="feature-description">
+                        Deliver secure, high-performance connectivity to branch locations with simplified management.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div class="floating-help">
         <img src="Images/images1.png" alt="Help Icon" class="help-icon">
-        <script src="script.js"></script>   
     </div>
 
-    <div class="car">
-        <h2>
-            Protect and accelerate your organization,<br>
-            without sacrificing security or network performance
-        </h2>
-        <p>
-            Whether it’s GenAI, cloud, your data center, or the internet, keep your business and data secure with a phenomenal user experience anywhere work happens.
-        </p>
+    <section class="school-section">
+        <div class="school">
+        <h1>Be ready for anything</h1>
+        </div>
+    </section>
 
-        <div class="logs">
-        <img src="Images/images7.png" alt="Car Image" class="car-image">
-
-        <div class="text">
-        <div class="one-platform">
-            <img src="Images/images9.svg" alt="One Platform" class="one-platform">
-            <h3>The power of One</h3>
-            <p>
-                Reduce cost and complexity using one cloud-native open platform, one console, one client, one gateway and one private security cloud.
-            </p>
-        </div>
-    
-        <div class="one-platform">
-            <img src="Images/images10.svg" alt="AI-powered visibility and protection" class="one-platform">
-            <h3>AI-powered visibility and protection</h3>
-            <p>
-                Prevent data loss and de-risk threats by decoding cloud GenAI, and SaaS user and entity activity with the context-aware Zero Trust Engine.
-            </p>
-        </div>
-    
-        <div class="one-platform">
-            <img src="Images/images11.svg" alt="A phenomenal experience, end-to-end" class="one-platform">
-            <h3>A phenomenal experience, end-to-end</h3>
-            <p>
-                Deliver, manage, and optimize access from anywhere with end-to-end connectivity that is fast and reliable.
-            </p>
-        </div>
-    
-        <div class="one-platform">
-            <img src="Images/images12.svg" alt="Built right from day one" class="one-platform">
-            <h3>Built right from day one</h3>
-            <p>
-                Harness the power of cloud, SaaS, and AI innovation through a platform built for modern business.
-            </p>
-        </div>
-        </div>
-    </div>
-    </div>
-
-    <div class="color">
-        <h1>How to achieve modern security and network performance</h1>
-        
-    </div>
-    
+    <script src="script.js"></script>
 </body>
 </html>

@@ -33,7 +33,6 @@ function animateParticle(particle) {
         posX += speed * 0.05 * direction;
         posY -= speed * 0.05;
         
-       
         if (posY < -5) {
             posY = 105;
             posX = Math.random() * 100;
@@ -52,19 +51,46 @@ function animateParticle(particle) {
     moveParticle();
 }
 
+function showFeature(index) {
+    const images = document.querySelectorAll('.feature-image');
+    const descriptions = document.querySelectorAll('.feature-description');
+    const buttons = document.querySelectorAll('.feature-item');
+
+    images.forEach(img => img.classList.remove('active'));
+    descriptions.forEach(desc => desc.classList.remove('active'));
+
+    buttons.forEach(btn => btn.classList.remove('active'));
+    document.getElementById('feature-image-' + index).classList.add('active');
+    document.getElementById('feature-desc-' + index).classList.add('active');
+
+    buttons[index].classList.add('active');
+    buttons.forEach((btn, i) => {
+        if (i === index) {
+            btn.style.boxShadow = '0 4px 15px rgba(90, 177, 212, 0.6)';
+            btn.style.borderColor = 'rgba(120, 228, 194, 0.8)';
+        } else {
+            btn.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+            btn.style.borderColor = 'rgba(120, 228, 194, 0.3)';
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     createParticles();
-    
-    document.querySelector('.search-btn').addEventListener('click', function() {
-        alert('Search functionality would go here');
-    });
-    
-    document.querySelector('.language-select').addEventListener('click', function() {
-        alert('Language selection would go here');
-    });
-    
+    showFeature(0);
+
     document.querySelector('.floating-help').addEventListener('click', function() {
-        alert('Help functionality would go here');
+        alert('How can we help you today?');
+    });
+
+    document.querySelector('.language-select').addEventListener('click', function(e) {
+        e.stopPropagation();
+        const languageMenu = this.querySelector('.language');
+        languageMenu.style.display = languageMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', function() {
+        document.querySelector('.language').style.display = 'none';
     });
 });
 
