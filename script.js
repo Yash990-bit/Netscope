@@ -94,3 +94,52 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+const images = document.querySelectorAll('.gallery-image');
+const titleEl = document.getElementById('image-title');
+const buttonEl = document.getElementById('image-btn');
+const transitionLine = document.getElementById('transition-line');
+
+const imageData = [
+    {
+        title: 'Apria Health',
+        button: 'Learn More'
+    },
+    {
+        title: 'Bel Group',
+        button: 'Discover'
+    },
+    {
+        title: 'Aspen Snowmass',
+        button: 'View Story'
+    }
+];
+let current = 0;
+
+setInterval(() => {
+    images[current].classList.remove('active');
+    current = (current + 1) % images.length;
+    images[current].classList.add('active');
+
+    titleEl.textContent = imageData[current].title;
+    buttonEl.textContent = imageData[current].button;
+
+    transitionLine.style.transform = 'scaleX(0)'; 
+    void transitionLine.offsetWidth; 
+    transitionLine.style.transform = 'scaleX(1)'; 
+
+}, 10000);
+
+
+const logo = document.getElementById("logo");
+
+    document.getElementById("sun1").addEventListener("click", () => {
+        logo.src = "Images/logo-red.png";
+    });
+
+    document.getElementById("sun2").addEventListener("click", () => {
+        logo.src = "Images/logo-blue.png";
+    });
+
+    document.getElementById("sun3").addEventListener("click", () => {
+        logo.src = "Images/logo-green.png";
+    });
