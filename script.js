@@ -131,15 +131,35 @@ setInterval(() => {
 
 
 const logo = document.getElementById("logo");
-
     document.getElementById("sun1").addEventListener("click", () => {
         logo.src = "Images/logo-red.png";
     });
-
     document.getElementById("sun2").addEventListener("click", () => {
         logo.src = "Images/logo-blue.png";
     });
-
     document.getElementById("sun3").addEventListener("click", () => {
         logo.src = "Images/logo-green.png";
     });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+          item.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const targetContent = document.getElementById(targetId);
+            const menuIcon = this.querySelector('.menu-icon');
+
+            document.querySelectorAll('.content-section').forEach(section => {
+              section.classList.remove('active');
+            });
+            document.querySelectorAll('.menu-icon').forEach(icon => {
+              icon.innerHTML = '▶';
+              icon.classList.remove('active');
+            });
+            
+            targetContent.classList.add('active');
+            menuIcon.innerHTML = '▼';
+            menuIcon.classList.add('active');
+          });
+        });
+      });
