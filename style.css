@@ -986,3 +986,78 @@ header {
 .learn-more:hover {
     color: #1a365d;
 }
+
+.single {
+    width: 100%;
+    height: 100vh;
+}
+
+.single h1 {
+    font-size: 40px;
+    font-weight: lighter;
+    margin-top: 120px;
+    padding-left: 150px;
+}
+
+.single-img {
+    margin-top: 60px;
+    padding-left: 150px;
+    border-radius: 20px;
+}
+
+.sin {
+    padding-left: 100px;
+    margin-top: 80px;
+    display: flex;
+    gap: 20px;
+    box-sizing: border-box;
+}
+
+.cos {
+    font-size: 24px;
+    color: #091649;
+    font-weight: bold;
+    padding-left: 340px;
+    margin-top: -90px;
+    background-color: white;
+    height: 150px;
+    width: 80%;
+}
+
+.highlight {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    justify-content: center;
+}
+
+.get {
+    background-color: #091649;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    transition: background-color 0.3s;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.get:hover {
+    background-color: #5ab1d4;
+}
+.footer{
+    width: 100%;
+    height: 100vh;
+}
+.footer-logo{
+    width:15%;
+    height: 15px;
+    align-items: center;
+}
