@@ -752,44 +752,46 @@ header {
 
 .world {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     background-color: white;
-    justify-content: center; 
-    align-items: center; 
-    flex-direction: column; 
+    justify-content: flex-start;
+    align-items: center;
+    padding: 60px 20px;
 }
 
-.world-container{
+.world-container {
     color: #07427c;
     text-align: center;
     font-size: 22px;
     font-weight: lighter;
-    margin-top: -250px;
-    padding-bottom: -1000px;
+    margin-bottom: 40px;
 }
 
 .boxes {
     display: flex;
+    flex-wrap: wrap;
     gap: 50px;
     justify-content: center;
-    margin-top: 90px;
+    margin-top: 60px;
 }
 
 .box {
-    width: 350px; 
+    width: 350px;
     height: 350px;
     background-color: #07427c;
     color: white;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-size: 16px;
+    justify-content: flex-start;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: relative;
     transition: transform 0.3s ease-in-out;
-
+    text-align: center;
 }
 
 .box:hover {
@@ -798,52 +800,92 @@ header {
 
 .box .logo {
     position: absolute;
-    top: 10px; 
-    left: 10px;
+    top: 20px;
+    left: 20px;
     width: 40px;
-    height: 40px; 
-    object-fit: contain; 
-}
-
-.box .text {
-    text-align: center;
-    font-weight:100;
-    line-height: 1.6;
-    font-size: 15px;
-
+    height: 40px;
 }
 
 .box .logo img {
     width: 100%;
     height: 100%;
+    object-fit: contain;
 }
 
-.cat{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-right: 10px;
+.box .text {
+    margin-top: 70px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.6;
 }
 
-.cat:hover{
+.cat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 15px;
     cursor: pointer;
+}
+
+.cat:hover {
     text-decoration: underline;
-    text-decoration-color: #5ab1d4;
+    color: #5ab1d4;
+}
+
+.leader {
+    width: 100%;
+    max-width: 1000px;
+    margin: 80px auto 50px;
+    padding: 20px;
+    text-align: center;
 }
 
 .leader h3 {
     font-size: 2rem;
     color: #222;
+    margin-bottom: 20px;
+    background-color: #fdfafa;
 }
 
 .leader p {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 14px;
     line-height: 1.6;
     color: #555;
-    margin-bottom: 50px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fdfafa;
+}
+
+.lost{
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .boxes {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .box {
+        width: 90%;
+        height: auto;
+    }
+
+    .box .text {
+        margin-top: 80px;
+    }
+
+    .leader h3 {
+        font-size: 1.5rem;
+    }
+
+    .leader p {
+        font-size: 13px;
+    }
 }
 
