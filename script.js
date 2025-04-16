@@ -160,6 +160,12 @@ const logo = document.getElementById("logo");
             targetContent.classList.add('active');
             menuIcon.innerHTML = '▼';
             menuIcon.classList.add('active');
-          });
         });
-      });
+     });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    window.toggleBox = function(element) {
+        element.classList.toggle('active');
+    }
+});

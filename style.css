@@ -1000,11 +1000,47 @@ header {
     margin-bottom: 40px;
 }
 
-.single-img img {
+.single-img {
+    position: relative;
+    margin-top: 60px;
+    border-radius: 20px;
     width: 100%;
     max-width: 800px;
+}
+
+.single-img img {
+    width: 100%;
     border-radius: 20px;
     display: block;
+}
+
+.info-box {
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    font-weight: bold;
+    color: #091649;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Hidden text */
+.info-text {
+    font-weight: normal;
+    font-size: 13px;
+    margin-top: 10px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.4s ease;
+}
+
+.info-box.active .info-text {
+    max-height: 100px;  /* adjust if needed */
+    opacity: 1;
 }
 
 .sin {
@@ -1049,7 +1085,9 @@ header {
     transition: background-color 0.3s ease;
     font-size: 16px;
     display: block;
-    margin: 0 auto; 
+    margin: 0 auto;
+    box-shadow:#5ab1d4;
+
 }
 
 .get:hover {
