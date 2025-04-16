@@ -1117,8 +1117,8 @@ header {
 }
 
 .footer{
-    width: 80%;
-    height: 80vh;
+    width: 82%;
+    height: 82vh;
     background-color: #0c1a45;
     color: white;
     padding: 40px 20px;
@@ -1240,6 +1240,7 @@ header {
     border-radius: 50%;
     border: 2px solid white;
     margin-left: 0.75rem;
+    margin-bottom: -15px;
 }
 
 .copyright {
@@ -1249,7 +1250,7 @@ header {
 .divider {
     height: 2px;
     background-color: #ff8c00;
-    margin: 1px 0;
+    margin: 5px 0;
 }
 
 @media (max-width: 768px) {
