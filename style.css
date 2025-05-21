@@ -129,6 +129,16 @@ header {
     display: block;
 }
 
+.language-select {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .language {
+    transition: all 0.3s ease;
+  }
+  
+
 .language a {
     color: white;
     text-decoration: none;
