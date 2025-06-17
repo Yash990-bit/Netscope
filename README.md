@@ -1,7 +1,5 @@
 # Netscope
 
-# 🍹 Kyara Beverages – Healthy Refreshments Website
-
 Welcome to the **Kyara Beverages** project – a modern, responsive website showcasing a line of healthy drinks. This site is built using **HTML**, **CSS**, and **JavaScript**, and includes an embedded video hero section, dynamic product cards, and a clean layout optimized for both desktop and mobile viewing.
 
 ## 📸 Preview
@@ -20,7 +18,6 @@ Welcome to the **Kyara Beverages** project – a modern, responsive website show
 - 📱 **Mobile Navigation** – Hamburger menu toggle for small screens.
 - ☁️ **Contact/Footer** – Includes contact form layout and social links.
 
----
 
 ## 🛠️ Tech Stack
 
