@@ -1,6 +1,6 @@
 # Netscope
 
-Welcome to the **Kyara Beverages** project – a modern, responsive website showcasing a line of healthy drinks. This site is built using **HTML**, **CSS**, and **JavaScript**, and includes an embedded video hero section, dynamic product cards, and a clean layout optimized for both desktop and mobile viewing.
+Welcome to the **Netscope** project – a modern, responsive website showcasing a line of healthy drinks. This site is built using **HTML**, **CSS**, and **JavaScript**, and includes an embedded video hero section, dynamic product cards, and a clean layout optimized for both desktop and mobile viewing.
 
 ## 📸 Preview
 ---
