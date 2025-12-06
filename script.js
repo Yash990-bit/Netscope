@@ -222,11 +222,24 @@ document.addEventListener('DOMContentLoaded', function () {
     const chatInput = document.getElementById('chat-input');
     const chatBody = document.getElementById('chat-body');
 
+    // Settings Elements
+    const settingsBtn = document.getElementById('settings-btn');
+    const apiSettingsPanel = document.getElementById('api-settings-panel');
+    const apiKeyInput = document.getElementById('api-key-input');
+    const saveApiKeyBtn = document.getElementById('save-api-key');
+    const apiStatusMsg = document.getElementById('api-status-msg');
+
+    // State
+    let apiKey = localStorage.getItem('gemini_api_key') || '';
+    if (apiKey) {
+        apiKeyInput.value = apiKey;
+        apiStatusMsg.textContent = 'Key loaded';
+        apiStatusMsg.classList.add('status-success');
+    }
+
     // Toggle Chat
     if (chatToggleBtn && chatWidget && closeChatBtn) {
         chatToggleBtn.addEventListener('click', () => {
-            // Remove default alert behavior if present
-            // The previous event listener might still trigger, but we open chat now.
             chatWidget.classList.add('active');
         });
 
@@ -235,22 +248,68 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Send Message
-    function sendMessage() {
+    // Toggle Settings
+    if (settingsBtn && apiSettingsPanel) {
+        settingsBtn.addEventListener('click', () => {
+            apiSettingsPanel.classList.toggle('open');
+        });
+    }
+
+    // Save API Key
+    if (saveApiKeyBtn && apiKeyInput) {
+        saveApiKeyBtn.addEventListener('click', () => {
+            const key = apiKeyInput.value.trim();
+            if (key) {
+                apiKey = key;
+                localStorage.setItem('gemini_api_key', key);
+                apiStatusMsg.textContent = 'Key saved securely!';
+                apiStatusMsg.className = 'status-msg status-success';
+                setTimeout(() => apiSettingsPanel.classList.remove('open'), 1000);
+            } else {
+                localStorage.removeItem('gemini_api_key');
+                apiKey = '';
+                apiStatusMsg.textContent = 'Key removed. Using Mock AI.';
+                apiStatusMsg.className = 'status-msg';
+            }
+        });
+    }
+
+    // Send Message Logic
+    async function sendMessage() {
         const message = chatInput.value.trim();
         if (message) {
-            // Add User Message
+            // 1. Add User Message
             appendMessage(message, 'user');
             chatInput.value = '';
 
-            // Simulate AI Typing & Response
-            setTimeout(() => {
-                const aiResponse = getMockAIResponse(message);
-                appendMessage(aiResponse, 'ai');
-            }, 1000);
+            // 2. Show Loading Indicator
+            const loadingId = showLoading();
+
+            try {
+                if (apiKey) {
+                    // 3a. Call Real AI
+                    const response = await callGeminiAPI(message, apiKey);
+                    removeLoading(loadingId);
+                    appendMessage(response, 'ai');
+                } else {
+                    // 3b. Simulate Mock AI
+                    setTimeout(() => {
+                        removeLoading(loadingId);
+                        const aiResponse = getMockAIResponse(message);
+                        appendMessage(aiResponse, 'ai');
+                    }, 1000);
+                }
+            } catch (error) {
+                console.error("AI Error:", error);
+                removeLoading(loadingId);
+                appendMessage("I'm having trouble connecting. Switching to offline mode.", 'ai');
+                const fallback = getMockAIResponse(message);
+                appendMessage(fallback, 'ai');
+            }
         }
     }
 
+    // Event Listeners for Run
     if (sendBtn && chatInput) {
         sendBtn.addEventListener('click', sendMessage);
         chatInput.addEventListener('keypress', (e) => {
@@ -258,15 +317,60 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // --- HELPER FUNCTIONS ---
+
     function appendMessage(text, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
         messageDiv.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
-        messageDiv.textContent = text;
+
+        // Convert URLs to links if simple
+        const linkedText = text.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color:#78e4c2;text-decoration:underline;">$1</a>');
+        messageDiv.innerHTML = linkedText; // Use innerHTML safely for links
+
         chatBody.appendChild(messageDiv);
-        chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll
+        chatBody.scrollTop = chatBody.scrollHeight;
     }
 
+    function showLoading() {
+        const id = 'loading-' + Date.now();
+        const loaderDiv = document.createElement('div');
+        loaderDiv.classList.add('message', 'ai-message');
+        loaderDiv.id = id;
+        loaderDiv.innerHTML = '<span class="typing-dots">...</span>'; // Simple loading dots
+        chatBody.appendChild(loaderDiv);
+        chatBody.scrollTop = chatBody.scrollHeight;
+        return id;
+    }
+
+    function removeLoading(id) {
+        const element = document.getElementById(id);
+        if (element) element.remove();
+    }
+
+    // Real API Call
+    async function callGeminiAPI(prompt, key) {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`;
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{ text: "You are a helpful AI assistant for Netskope, a SASE security leader. Answer concisely. User says: " + prompt }]
+                }]
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`API Error: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.candidates[0].content.parts[0].text;
+    }
+
+    // Fallback Mock Logic
     function getMockAIResponse(userText) {
         const lowerText = userText.toLowerCase();
 
@@ -279,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (lowerText.includes('pricing') || lowerText.includes('cost')) {
             return "For pricing details, please visit our 'Contact Us' page or request a demo from our sales team.";
         } else {
-            return "That's an interesting question. While I'm an AI, I recommend exploring our 'Platform' page for more in-depth information on that topic.";
+            return "That's an interesting question. While in Simulator Mode, I recommend exploring our 'Platform' page. Enter an API Key for full intelligence!";
         }
     }
 });

@@ -1408,6 +1408,13 @@ a:hover {
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     color: white;
+    justify-content: space-between;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
 }
 
 .chat-avatar {
@@ -1446,19 +1453,116 @@ a:hover {
     opacity: 0.7;
 }
 
+.settings-btn,
 .close-chat {
-    margin-left: auto;
     background: none;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     opacity: 0.7;
     transition: opacity 0.3s;
+    padding: 5px;
 }
 
+.settings-btn:hover,
 .close-chat:hover {
     opacity: 1;
+    color: var(--accent-teal);
+}
+
+/* API Settings Panel */
+.api-settings-panel {
+    background: rgba(11, 26, 69, 0.95);
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
+    /* Hidden by default */
+    flex-direction: column;
+    gap: 10px;
+    animation: slideDown 0.3s ease;
+}
+
+.api-settings-panel.open {
+    display: flex;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.api-settings-panel h4 {
+    margin: 0;
+    color: var(--accent-teal);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.api-settings-panel p {
+    font-size: 12px;
+    color: #ccc;
+    margin: 0;
+}
+
+.api-settings-panel a {
+    color: var(--accent-teal);
+    text-decoration: underline;
+}
+
+.api-input-group {
+    display: flex;
+    gap: 8px;
+}
+
+.api-input-group input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 12px;
+    border-radius: 6px;
+    color: white;
+    font-size: 12px;
+    outline: none;
+}
+
+.api-input-group button {
+    background: var(--accent-teal);
+    border: none;
+    border-radius: 6px;
+    width: 32px;
+    cursor: pointer;
+    color: #0b1a45;
+}
+
+.secure-note {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.status-msg {
+    font-size: 11px;
+    min-height: 15px;
+}
+
+.status-success {
+    color: #00ff88;
+}
+
+.status-error {
+    color: #ff4444;
 }
 
 /* Body */
