@@ -213,4 +213,73 @@ document.addEventListener('DOMContentLoaded', function () {
     window.toggleBox = function (element) {
         element.classList.toggle('active');
     };
+
+    // --- AI CHAT WIDGET LOGIC ---
+    const chatToggleBtn = document.getElementById('chat-toggle-btn');
+    const chatWidget = document.getElementById('chat-widget');
+    const closeChatBtn = document.getElementById('close-chat-btn');
+    const sendBtn = document.getElementById('send-btn');
+    const chatInput = document.getElementById('chat-input');
+    const chatBody = document.getElementById('chat-body');
+
+    // Toggle Chat
+    if (chatToggleBtn && chatWidget && closeChatBtn) {
+        chatToggleBtn.addEventListener('click', () => {
+            // Remove default alert behavior if present
+            // The previous event listener might still trigger, but we open chat now.
+            chatWidget.classList.add('active');
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            chatWidget.classList.remove('active');
+        });
+    }
+
+    // Send Message
+    function sendMessage() {
+        const message = chatInput.value.trim();
+        if (message) {
+            // Add User Message
+            appendMessage(message, 'user');
+            chatInput.value = '';
+
+            // Simulate AI Typing & Response
+            setTimeout(() => {
+                const aiResponse = getMockAIResponse(message);
+                appendMessage(aiResponse, 'ai');
+            }, 1000);
+        }
+    }
+
+    if (sendBtn && chatInput) {
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    }
+
+    function appendMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(sender === 'user' ? 'user-message' : 'ai-message');
+        messageDiv.textContent = text;
+        chatBody.appendChild(messageDiv);
+        chatBody.scrollTop = chatBody.scrollHeight; // Auto scroll
+    }
+
+    function getMockAIResponse(userText) {
+        const lowerText = userText.toLowerCase();
+
+        if (lowerText.includes('sase')) {
+            return "SASE (Secure Access Service Edge) converges wide area networking (WAN) and security services into a single, cloud-delivered service model. Netskope One is a leader in SASE!";
+        } else if (lowerText.includes('security') || lowerText.includes('protect')) {
+            return "Netskope provides unmatched security with our Zero Trust Engine, protecting particular data and defending against threats in cloud, web, and private apps.";
+        } else if (lowerText.includes('hello') || lowerText.includes('hi')) {
+            return "Hello there! How can I assist you with your security needs today?";
+        } else if (lowerText.includes('pricing') || lowerText.includes('cost')) {
+            return "For pricing details, please visit our 'Contact Us' page or request a demo from our sales team.";
+        } else {
+            return "That's an interesting question. While I'm an AI, I recommend exploring our 'Platform' page for more in-depth information on that topic.";
+        }
+    }
 });
