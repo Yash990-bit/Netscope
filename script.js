@@ -1,4 +1,44 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    // --- SCROLL ANIMATION OBSERVER ---
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                entry.target.classList.add('reveal'); // Ensure reveal class is added
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    const hiddenElements = document.querySelectorAll('.hidden-bottom, .hidden-left, .hidden-stagger');
+    hiddenElements.forEach((el) => observer.observe(el));
+
+    // --- TYPING EFFECT ---
+    const textElement = document.querySelector('.typing-effect');
+    if (textElement) {
+        const textToType = textElement.textContent;
+        textElement.textContent = '';
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (charIndex < textToType.length) {
+                textElement.textContent += textToType.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 50); // Typing speed
+            } else {
+                textElement.style.borderRight = 'none'; // Remove caret after typing
+            }
+        }
+        // Start typing after a small delay
+        setTimeout(typeWriter, 500);
+    }
+
     function createParticles() {
         const particlesContainer = document.getElementById('particles');
         const numberOfParticles = 50;
@@ -91,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const languageMenu = document.getElementById('languageList') || document.querySelector('.language');
 
     if (languageSelect && selectedLanguage && languageMenu) {
-        languageSelect.addEventListener('click', function(e) {
+        languageSelect.addEventListener('click', function (e) {
             e.stopPropagation();
             languageMenu.style.display = languageMenu.style.display === 'block' ? 'none' : 'block';
         });
@@ -102,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const languageLinks = languageMenu.querySelectorAll('li a');
         languageLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
+            link.addEventListener('click', function (e) {
                 e.preventDefault();
                 selectedLanguage.textContent = this.textContent + ' ▼';
                 languageMenu.style.display = 'none';
@@ -151,7 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const menuItems = document.querySelectorAll('.menu-item');
     menuItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.addEventListener('click', function () {
             const targetId = this.getAttribute('data-target');
             const targetContent = document.getElementById(targetId);
             const menuIcon = this.querySelector('.menu-icon');
@@ -170,7 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    window.toggleBox = function(element) {
+    window.toggleBox = function (element) {
         element.classList.toggle('active');
     };
 });
